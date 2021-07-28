@@ -1,6 +1,27 @@
 <template>
   <center>
+    <Login
+      v-if="showloginmodal"
+      @closemodal="showloginmodal = false"
+      class="authmodal"
+    />
+    <Signup
+      v-if="showsignupmodal"
+      @closemodal="showsignupmodal = false"
+      class="authmodal"
+    />
+
     <h1>The Chatters | By Darsh Gupta</h1>
+    <div>
+      <button class="btn btn-primary" @click="showsignupmodal = true">
+        Sign Up
+      </button>
+      &nbsp;
+      <button class="btn btn-primary" @click="showloginmodal = true">
+        Log in
+      </button>
+    </div>
+    <div></div>
     <br />
     <div class="chatbox">
       <div class="chat" id="chat" style="text-align:left;">
@@ -22,7 +43,21 @@
 </template>
 
 <script>
-export default {};
+import Login from "./Login.vue";
+import Signup from "./Signup.vue";
+
+export default {
+  components: {
+    Login,
+    Signup,
+  },
+  data() {
+    return {
+      showsignupmodal: false,
+      showloginmodal: false,
+    };
+  },
+};
 </script>
 
 <style>

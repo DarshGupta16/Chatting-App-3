@@ -1,6 +1,10 @@
 <template>
-  <h1>Login</h1>
-  <button class="btn btn-primary">Go Back</button>
+  <div>
+    <h1>Login</h1>
+    <button class="btn btn-primary" @click="this.$emit('closemodal')">
+      Go Back
+    </button>
+  </div>
 </template>
 
 <script>
