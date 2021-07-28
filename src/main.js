@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+import firebase from "firebase/app";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
