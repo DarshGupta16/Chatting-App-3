@@ -17,7 +17,7 @@
     </p>
 
     <h1>The Chatters | By Darsh Gupta</h1>
-    <div>
+    <div v-if="!loggedin">
       <button class="btn btn-primary" @click="showsignupmodal = true">
         Sign Up
       </button>
@@ -26,7 +26,10 @@
         Log in
       </button>
     </div>
-    <div></div>
+    <div v-else>
+      <button class="btn btn-primary" @click="logout">Log Out</button> &nbsp;
+      <button class="btn btn-primary" @click="opensettings">Settings</button>
+    </div>
     <br />
     <div class="chatbox">
       <div class="chat" id="chat" style="text-align:left;">
@@ -121,6 +124,12 @@ export default {
             console.log(error);
           });
       }
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .catch((error) => console.log(error));
     },
   },
 };
