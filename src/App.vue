@@ -1,5 +1,10 @@
 <template>
   <center>
+    <SettingsModal
+      v-if="showsettingsmodal"
+      @closemodal="showsettingsmodal = false"
+      class="authmodal"
+    />
     <Login
       v-if="showloginmodal"
       @closemodal="showloginmodal = false"
@@ -28,7 +33,9 @@
     </div>
     <div v-else>
       <button class="btn btn-primary" @click="logout">Log Out</button> &nbsp;
-      <button class="btn btn-primary" @click="opensettings">Settings</button>
+      <button class="btn btn-primary" @click="showsettingsmodal = true">
+        Settings
+      </button>
     </div>
     <br />
     <div class="chatbox">
@@ -56,6 +63,7 @@
 <script>
 import Login from "./Login.vue";
 import Signup from "./Signup.vue";
+import SettingsModal from "./SettingsModal.vue";
 const axios = require("axios");
 
 import firebase from "firebase/app";
@@ -65,6 +73,7 @@ export default {
   components: {
     Login,
     Signup,
+    SettingsModal,
   },
   created() {
     setInterval(() => {
@@ -89,6 +98,7 @@ export default {
     return {
       showsignupmodal: false,
       showloginmodal: false,
+      showsettingsmodal: false,
       messageInput: "",
       messages: [],
       messagesAPI: "http://localhost:3000/messages",
