@@ -109,31 +109,20 @@ export default {
   methods: {
     sendmessage(e) {
       e.preventDefault();
-      if (this.loggedin) {
-        axios
-          .post(this.messagesAPI, {
-            sender: this.username,
-            message: this.messageInput,
-          })
-          .then(() => {
-            this.messageInput = "";
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        axios
-          .post(this.messagesAPI, {
-            sender: Math.floor(Math.random() * 10000),
-            message: this.messageInput,
-          })
-          .then(() => {
-            this.messageInput = "";
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      if (!this.loggedin && this.username.length == 0) {
+        this.username = "anonymous" + Math.floor(Math.random() * 10000);
       }
+      axios
+        .post(this.messagesAPI, {
+          sender: this.username,
+          message: this.messageInput,
+        })
+        .then(() => {
+          this.messageInput = "";
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     logout() {
       firebase
