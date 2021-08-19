@@ -56,6 +56,7 @@
           Add Message
         </button>
       </form>
+      <br />
     </div>
   </center>
 </template>
@@ -92,6 +93,9 @@ export default {
           this.loggedin = false;
         }
       });
+
+      const container = this.$el.querySelector(".chat");
+      container.scrollTop = container.scrollHeight;
     }, 600);
   },
   data() {
